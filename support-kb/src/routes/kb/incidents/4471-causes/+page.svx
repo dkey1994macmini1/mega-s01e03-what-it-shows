@@ -1,0 +1,60 @@
+---
+layout: runbook
+title: '#4471 · two causes, not one'
+owner: support desk
+status: proposed
+reviewed: 2026-10-29
+signature: 'v1.eyJzdWIiOiI1ODAyIiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMzMTQxNjgsImV4cCI6MTc5MzQwMDU2OH0.rwdAtJu3TBZ0F98JJsz2oOM_6arCnYlVysHklxgmpko'
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+#4471 is marked known as one bug: the parser reads dates month first. The export does not
+support that. Its 412 unique reports split into two causes, and the parser fix leaves 33 of
+them broken.
+
+<Callout kind="warn">
+Not one issue. <code>parser</code> covers 379 reports; <code>hint</code> covers 33. The 33 have
+no ticket of their own.
+</Callout>
+
+## What was merged
+
+<CauseTable ticket={4471} />
+
+The desk counted 412 reports. The export holds 427 rows because 15 ids appear twice;
+`uniqueById` drops the repeats.
+
+## The two tickets
+
+- **[#1 · Parser reads dates month first](https://github.com/dkey1994macmini1/mega-s01e03-what-it-shows/issues/1)**
+  covers **379 reports** from all 11 tenants on file, across app, email and booking-v2. The shared
+  parser ignores the tenant's locale.
+- **[#2 · booking-v3 hint prints MM/DD/YYYY](https://github.com/dkey1994macmini1/mega-s01e03-what-it-shows/issues/2)**
+  covers **33 reports**, all from day-first tenants on booking-v3 forms. The hint says month
+  first; the form reads day first.
+
+## Why subject dedupe missed it
+
+[Decision 0001](/kb/decisions/0001-dedupe-by-subject) merges on the subject line alone. These two
+causes share subjects such as "Date is wrong", so the reports landed in one ticket.
+`meta.intakeTag` did not catch it either: it is a guess from the reporter's browser, not the
+tenant's locale. In this export 23 parser reports are tagged `hint` and 15 hint reports are
+tagged `parser`.
+
+## Five reports that read as a one-day move
+
+R-41202, R-41209, R-41236, R-41344 and R-41620 describe a one-day shift rather than a swapped
+month and day. They stay counted under `parser`, as `desk-notes.json` says, so the two tickets
+still add up to 412. They are a note on the parser ticket, not a third ticket.
+
+## What changes
+
+Split #4471 into the two tickets above. Keep the parser ticket as the known issue and open the 33
+form reports as their own. Re-read the merged report after both fixes ship.
+
+<RenderStamp {signature} />

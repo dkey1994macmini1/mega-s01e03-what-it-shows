@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>#4471 · two causes, not one · support kb</title>
+<style>
+  :root {
+    --bg: #fbfaf7; --fg: #1d1d1b; --muted: #6b6a66; --line: #e3e0d8;
+    --accent: #2f6f5e; --warn: #b4501f; --warn-bg: #fbeee6; --note-bg: #eef5f2;
+    --mono: ui-monospace, 'Cascadia Code', Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171716; --fg: #ecebe6; --muted: #9c9a93; --line: #34332f;
+      --accent: #6fbfa6; --warn: #f0905d; --warn-bg: #3a2418; --note-bg: #1d2c27;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, sans-serif; }
+  .kb { max-width: 760px; margin: 0 auto; padding: 2rem 16px 4rem; }
+  .crumb { font: 0.8rem var(--mono); text-decoration: none; color: var(--muted); }
+  h1 { margin: 0.25rem 0 0.5rem; line-height: 1.2; }
+  h2 { margin: 2rem 0 0.5rem; font-size: 1.15rem; }
+  .meta { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; color: var(--muted); font-size: 0.85rem; margin: 0; }
+  .status { border: 1px solid var(--line); border-radius: 99px; padding: 0 0.6rem; }
+  .stale { color: var(--warn); font-weight: 600; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.92rem; }
+  th, td { border-bottom: 1px solid var(--line); padding: 0.35rem 0.5rem; text-align: left; }
+  code { font-family: var(--mono); font-size: 0.88em; }
+  a { color: var(--accent); }
+  aside { border-left: 4px solid var(--accent); padding: 0.5rem 1rem; margin: 1rem 0; background: var(--note-bg); }
+  aside.warn { border-color: var(--warn); background: var(--warn-bg); }
+  .tags { color: var(--muted); font-size: 0.85em; }
+  .note { color: var(--muted); font-size: 0.85em; }
+  .stamp { margin: 2rem 0 0; font: 0.85rem var(--mono); color: var(--muted); }
+  .stamp b { color: var(--accent); letter-spacing: 0.04em; }
+  footer { margin-top: 3rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+</style>
+</head>
+<body>
+<div class="kb">
+  <header>
+    <a class="crumb" href="https://github.com/dkey1994macmini1/mega-s01e03-what-it-shows/tree/main/support-kb">support desk · kb</a>
+    <h1>#4471 · two causes, not one</h1>
+    <p class="meta">
+      <span>owner <b>support desk</b></span>
+      <span class="status">proposed</span>
+      <span id="reviewed">reviewed 2026-10-29</span>
+    </p>
+  </header>
+  <main>
+    <p>#4471 is marked known as one bug: the parser reads dates month first. The export does not
+    support that. Its 412 unique reports split into two causes, and the parser fix leaves 33 of
+    them broken.</p>
+
+    <aside class="warn">
+      Not one issue. <code>parser</code> covers 379 reports; <code>hint</code> covers 33. The 33
+      have no ticket of their own.
+    </aside>
+
+    <h2>What was merged</h2>
+
+    <p class="sum"><strong>412</strong> reports merged into #4471 · <strong>2</strong> causes</p>
+
+    <table>
+      <thead>
+        <tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th>ticket</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>parser</code></td>
+          <td>379</td>
+          <td class="tags">parser ×356 · hint ×23</td>
+          <td>11</td>
+          <td>2026-04-01 → 2026-10-04</td>
+          <td><a href="https://github.com/dkey1994macmini1/mega-s01e03-what-it-shows/issues/1">#1</a></td>
+        </tr>
+        <tr>
+          <td><code>hint</code></td>
+          <td>33</td>
+          <td class="tags">hint ×18 · parser ×15</td>
+          <td>3</td>
+          <td>2026-04-17 → 2026-09-22</td>
+          <td><a href="https://github.com/dkey1994macmini1/mega-s01e03-what-it-shows/issues/2">#2</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="note">5 reports read as a one-day move; filed under <code>parser</code> by tenant.</p>
+
+    <p>The desk counted 412 reports. The export holds 427 rows because 15 ids appear twice;
+    <code>uniqueById</code> drops the repeats.</p>
+
+    <h2>The two tickets</h2>
+
+    <ul>
+      <li><strong><a href="https://github.com/dkey1994macmini1/mega-s01e03-what-it-shows/issues/1">#1 · Parser reads dates month first</a></strong>
+        covers <strong>379 reports</strong> from all 11 tenants on file, across app, email and
+        booking-v2. The shared parser ignores the tenant's locale.</li>
+      <li><strong><a href="https://github.com/dkey1994macmini1/mega-s01e03-what-it-shows/issues/2">#2 · booking-v3 hint prints MM/DD/YYYY</a></strong>
+        covers <strong>33 reports</strong>, all from day-first tenants on booking-v3 forms. The
+        hint says month first; the form reads day first.</li>
+    </ul>
+
+    <h2>Why subject dedupe missed it</h2>
+
+    <p><a href="https://github.com/dkey1994macmini1/mega-s01e03-what-it-shows/blob/main/support-kb/src/routes/kb/decisions/0001-dedupe-by-subject/+page.svx">Decision 0001</a>
+    merges on the subject line alone. These two causes share subjects such as "Date is wrong", so
+    the reports landed in one ticket. <code>meta.intakeTag</code> did not catch it either: it is a
+    guess from the reporter's browser, not the tenant's locale. In this export 23 parser reports
+    are tagged <code>hint</code> and 15 hint reports are tagged <code>parser</code>.</p>
+
+    <h2>Five reports that read as a one-day move</h2>
+
+    <p>R-41202, R-41209, R-41236, R-41344 and R-41620 describe a one-day shift rather than a
+    swapped month and day. They stay counted under <code>parser</code>, as
+    <code>desk-notes.json</code> says, so the two tickets still add up to 412. They are a note on
+    the parser ticket, not a third ticket.</p>
+
+    <h2>What changes</h2>
+
+    <p>Split #4471 into the two tickets above. Keep the parser ticket as the known issue and open
+    the 33 form reports as their own. Re-read the merged report after both fixes ship.</p>
+
+    <p class="stamp">desk ref <b>DR-0FPZ-B19H</b></p>
+  </main>
+  <footer>Pages are written by people. Tables and charts are built from data at render time.</footer>
+</div>
+<script>
+  (function () {
+    var reviewed = new Date('2026-10-29T00:00:00Z');
+    var days = Math.floor((Date.now() - reviewed.getTime()) / 86400000);
+    var el = document.getElementById('reviewed');
+    el.textContent = 'reviewed 2026-10-29 · ' + days + ' days ago' + (days > 180 ? ' · stale' : '');
+    if (days > 180) el.classList.add('stale');
+  })();
+</script>
+</body>
+</html>
