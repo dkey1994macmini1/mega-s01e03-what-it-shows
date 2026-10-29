@@ -18,7 +18,7 @@ support that. Its 412 unique reports split into two causes, and the parser fix l
 them broken.
 
 <Callout kind="warn">
-Not one issue. <code>parser</code> covers 379 reports; <code>hint</code> covers 33. The 33 have
+Not one issue. <code>parser</code> covers 379 reports; <code>hint</code> covers 33. The 33 had
 no ticket of their own.
 </Callout>
 
@@ -52,10 +52,11 @@ R-41202, R-41209, R-41236, R-41344 and R-41620 describe a one-day shift rather t
 month and day. They stay counted under `parser`, as `desk-notes.json` says, so the two tickets
 still add up to 412. They are a note on the parser ticket, not a third ticket.
 
-## What changes
+## Where it landed
 
-Split #4471 into the two tickets above. The desk accepted the split on 2026-10-29. Both tickets
-are closed; the parser fix and the form fix are the desk's to ship. Re-read the merged report
-after both ship.
+The desk accepted the split on 2026-10-29. Its engineering update records #4471 closed on
+5 October: `parser` shipped as `fix(dates): parse dd/mm for eu locales`, so #1 is closed as
+completed. The booking-v3 form is retired, so #2 is closed as not planned. The merged report needs
+no re-read unless the form comes back.
 
 <RenderStamp {signature} />

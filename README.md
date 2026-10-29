@@ -27,4 +27,4 @@ The page carries the `signature` ticket from `start-challenge` in its frontmatte
 
 ## What happened
 
-The desk accepted the split on 2026-10-29. Both tickets are closed; the parser fix and the form fix are the desk's to ship.
+The desk accepted the split on 2026-10-29. Its engineering update records #4471 closed on 5 October: the parser fix shipped as `fix(dates): parse dd/mm for eu locales`, and the booking-v3 form was retired, so the hint cause is won't fix. #1 is closed as completed and #2 as not planned.
