@@ -25,6 +25,6 @@ The support desk merged 412 reports about dates into ticket #4471 and marked it 
 
 The page carries the `signature` ticket from `start-challenge` in its frontmatter and ends with `<RenderStamp {signature} />`. The stamp renders as desk ref **DR-0FPZ-B19H**.
 
-## What the desk should do
+## What happened
 
-Split #4471 into the two tickets, keep the parser fix as the known issue, and open the 33 form reports as their own.
+The desk accepted the split on 2026-10-29. Both tickets are closed; the parser fix and the form fix are the desk's to ship.

@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 · two causes, not one'
 owner: support desk
-status: proposed
+status: accepted
 reviewed: 2026-10-29
 signature: 'v1.eyJzdWIiOiI1ODAyIiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMzMTQxNjgsImV4cCI6MTc5MzQwMDU2OH0.rwdAtJu3TBZ0F98JJsz2oOM_6arCnYlVysHklxgmpko'
 ---
@@ -54,7 +54,8 @@ still add up to 412. They are a note on the parser ticket, not a third ticket.
 
 ## What changes
 
-Split #4471 into the two tickets above. Keep the parser ticket as the known issue and open the 33
-form reports as their own. Re-read the merged report after both fixes ship.
+Split #4471 into the two tickets above. The desk accepted the split on 2026-10-29. Both tickets
+are closed; the parser fix and the form fix are the desk's to ship. Re-read the merged report
+after both ship.
 
 <RenderStamp {signature} />
